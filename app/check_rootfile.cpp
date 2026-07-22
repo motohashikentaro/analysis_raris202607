@@ -47,7 +47,7 @@ int main(int argc, char* argv[]){
 
     TCanvas* canvas = new TCanvas("canvas", "Event Data", 800, 600);
 
-    TGraph* waveform = new TGraph();
+    // TGraph* waveform = new TGraph();
 
     std::array<TGraph*, 500> waveforms;
     for(int i=0; i<500; i++){
