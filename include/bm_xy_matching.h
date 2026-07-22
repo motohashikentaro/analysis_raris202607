@@ -41,6 +41,9 @@ struct XYHit{
     double x;
     double y;
 
+    int adc_x;
+    int adc_y;
+
 };
 
 struct HitMatch{

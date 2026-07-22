@@ -89,11 +89,11 @@ int main(int argc, char* argv[]){
             // }
 
             if(std::any_of(std::begin(ed.toa[sipm]), std::end(ed.toa[sipm]), [](int toa_value){ return toa_value != 0; })){
+                if(toa_f >= 500) break; // Prevent exceeding the array size
                 for(int sample=0; sample<sd.nsample; sample++){
                     waveforms[toa_f]->SetPoint(waveforms[toa_f]->GetN(), sample, static_cast<Double_t>(ed.adc[sipm][sample]) - static_cast<Double_t>(ed.hit_pedestal[sipm]));
                 }            
                 toa_f++;
-                if(toa_f >= 500) break; // Prevent exceeding the array size
             }
         }
 
@@ -102,7 +102,8 @@ int main(int argc, char* argv[]){
     std::cout << "Total events with matching TOA: " << toa_f << std::endl;
 
     for(int i=0; i<toa_f; i++){
-        waveforms[i]->Draw("AL");
+        waveforms[i]->GetYaxis()->SetRangeUser(-100, 1000);
+        waveforms[i]->Draw(i == 0 ? "AL" : "L SAME");
     }
     canvas->SaveAs("../result/waveform.png");
 }

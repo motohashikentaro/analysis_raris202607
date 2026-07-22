@@ -30,6 +30,7 @@ class BmCorrela{
 
         void Hitmap();
         void XyCorrelation();
+        void BeamProfile();
 
     private:
         CorrelaData data_;
